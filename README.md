@@ -8,6 +8,8 @@ Esse projeto foi desenvolvido no contexto da disciplina “Programação de Sist
 
 O servo motor selecionado é o “FS5106B” da fabricante FEETECH. Esse é um motor de topologia Brush que opera na faixa de tensão de 4.8V até 6V e possui liberdade para girar até 200°. 
 
+![image](https://user-images.githubusercontent.com/60392063/126249093-1200486c-fb60-4a64-a13b-edd284227e6e.png)
+
 Uma importante característica sobre esse atuador é o fato de que sua posição é controlada com base na variação da largura de pulso de um sinal PWM, de modo que diferentes larguras de pulso correspondem a diferentes posições do eixo do rotor. 
 
 É conhecido com base no datasheet que a frequência de trabalho do servo é de 50Hz (periodo de 20ms) e que para posicionarmos o eixo na posição de um dos extremos temos que a largura do período é de 0.7ms e para o outro extremo a largura do período é de 2.3ms. 
