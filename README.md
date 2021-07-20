@@ -57,21 +57,21 @@ Função responsável por verificar e retornar o status do pino que define o mod
 ```
 int check_mode(void)
 {
-	GPIO_PinState status = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_5);
+	GPIO_PinState status = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_5);// Verifica o nivel logico da porta de controle
 	return((int) status);
 }
 ```
 
 Função responsável por retornar um feedback visual sobre qual o modo de operação do servo motor. 
 ```
-void transmit_status(int status)
+void transmit_status(int status) 
 {
-	if(status == 1)
+	if(status == 1)//caso o modo de operacao seja o com base no valor de ADC acende o LED vermelho
 	{
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, 1);
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, 0);
 	}
-	else
+	else//caso o modo de operacao seja o com base no valor de ADC acende o LED verde
 	{
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, 0);
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, 1);
@@ -81,7 +81,7 @@ void transmit_status(int status)
 
 Função responsável por verificar a posição atual do eixo do motor para o modo de operação com base no tempo
 ```
-int check_position(int position)
+int check_position(int position) //verifica qual a posicao atual e atualiza com a nova posicao
 {
 	if(position == 0)
 	{
@@ -100,9 +100,9 @@ int check_position(int position)
 
 Função responsável por fazer o mapeamento do valor resultado do ADC conectado ao potenciometro com o valor de referencia para posicionar o eixo do sevo motor
 ```
-uint16_t map_reference(int ADC_Value)
+uint16_t map_reference(int ADC_Value) 
 {
-	uint16_t reference = (uint16_t) (1.68*ADC_Value);
+	uint16_t reference = (uint16_t) (1.68*ADC_Value); //aplica um ganho sobre o valor lido no ADC para mapear o valor na faixa de controle do potenciometro
 	return (reference);
 }
 ```
@@ -112,7 +112,7 @@ Função responsável por gerar o valor de referencia a ser enviado para definir
 uint16_t reference_define(int status, ADC_HandleTypeDef *hadc1, int position)
 {
 	uint16_t reference = 0;
-	if(status == 1)
+	if(status == 1) // caso o modo de operacao seja o com referencia no potenciometro, a entrada analogica é lida e o valor mapeado em uma faixa para controle do servo motor
 	{
 		HAL_ADC_Start(&hadc1);
 		HAL_ADC_PollForConversion(&hadc1, 1);
@@ -120,7 +120,7 @@ uint16_t reference_define(int status, ADC_HandleTypeDef *hadc1, int position)
 		reference = map_reference(ADC_Value);
 		return(reference);
 	}
-	else
+	else // caso o modo de operacao seja o com base no timer o verifica-se qual a posicao atual e com base nisso define a posicao do eixo do servo motor 
 	{
 		if(position == 0)
 		{
