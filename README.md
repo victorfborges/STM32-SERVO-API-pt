@@ -20,7 +20,7 @@ Todas as informações usadas para o desenvolvimento desse projeto foram retirad
 
 O microcontrolador utilizado nessa aplicação é o STM32H743ZIT6U que está presente na placa de desenvolvimento NUCLEO-H743ZI. O modelo pode ser visualizado na sequinte imagem
 
-![image](https://user-images.githubusercontent.com/60392063/126248265-d7cf42ed-005d-430a-baad-bc41f601ade3.png)
+![image](https://user-images.githubusercontent.com/60392063/127783291-6adb9399-59ed-4595-8f75-956d65257755.png)
 
 
 ## Consideração importante
